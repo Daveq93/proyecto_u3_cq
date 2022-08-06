@@ -31,7 +31,15 @@ public class Hotel {
 	@Column(name="hote_direccion")
 	private String direccion;
 	
-	@OneToMany(mappedBy = "hotel",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	// el fetch EAGER es mucho mas costosa, porque ejecuta un sql para cada habitacion
+	@OneToMany(mappedBy = "hotel",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private List<Habitacion> habitaciones;
+
+	@Override
+	public String toString() {
+		return "Hotel [id=" + id + ", nombre=" + nombre + ", direccion=" + direccion + "]";
+	}
+	
+	
 	
 }

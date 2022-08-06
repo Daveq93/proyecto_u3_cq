@@ -103,23 +103,39 @@ public class ProyectoU3CqApplication implements CommandLineRunner{
 		//this.hotelService.insertarHotel(h3);
 		
 		
-		LOG.info("JOIN con tipo");
-		this.hotelService.buscarHotelInnerJoin("Normal").forEach(System.out::println);
-		LOG.info("JOIN -> SIN con tipo");
-		this.hotelService.buscarHotelInnerJoin().forEach(System.out::println);
+//		LOG.info("JOIN con tipo");
+//		this.hotelService.buscarHotelInnerJoin("Normal").forEach(System.out::println);
+//		LOG.info("JOIN -> SIN con tipo");
+//		this.hotelService.buscarHotelInnerJoin().forEach(System.out::println);
+//	
+//		LOG.info("LEFT JOIN con tipo");
+//	   this.hotelService.buscarHotelOuterJoinLeft("Normal").forEach(System.out::println);
+//	   LOG.info("LEFT JOIN -> SIN con tipo");
+//		this.hotelService.buscarHotelOuterJoinLeft().forEach(System.out::println);
+//	
+//		LOG.info("RIGHT JOIN");
+//	   this.hotelService.buscarHotelOuterJoinRigth("Normal").forEach(System.out::println);
 	
-		LOG.info("LEFT JOIN con tipo");
-	   this.hotelService.buscarHotelOuterJoinLeft("Normal").forEach(System.out::println);
-	   LOG.info("LEFT JOIN -> SIN con tipo");
-		this.hotelService.buscarHotelOuterJoinLeft().forEach(System.out::println);
 	
-		LOG.info("RIGHT JOIN");
-	   this.hotelService.buscarHotelOuterJoinRigth("Normal").forEach(System.out::println);
+		System.out.println("------------------  TALLER 30 ----------------------");
+		LOG.info("JOIN WHERE ");
+		this.hotelService.buscarHotelJoinWhere("Matrimonial").forEach(System.out::println);
 	
-	
+		LOG.info("INNER JOIN  EAGER/LAZY");
+		this.hotelService.buscarHotelInnerJoin("Matrimonial").forEach(System.out::println);
+		LOG.info("-->> Habitaciones");
 		
-	
+		List<Hotel> ho = this.hotelService.buscarHotelInnerJoin("Matrimonial");
 		
+		for (Hotel item : ho) {
+			LOG.info("Habitaciones: "+item.getHabitaciones());
+		}
+		
+		LOG.info("JOIN FETCH");
+		List<Hotel> ho2 =this.hotelService.buscarHotelJoinFetch("Matrimonial");
+		for (Hotel item : ho2) {
+			LOG.info("Habitaciones: "+item.getHabitaciones());
+		}
 	}
 
 }
