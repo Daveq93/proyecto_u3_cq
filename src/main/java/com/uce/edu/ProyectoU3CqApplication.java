@@ -1,5 +1,6 @@
 package com.uce.edu;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,9 +10,12 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.uce.edu.repo.modelo.CuentaBancaria;
 import com.uce.edu.repo.modelo.Habitacion;
 import com.uce.edu.repo.modelo.Hotel;
+import com.uce.edu.service.ICuentaBancariaService;
 import com.uce.edu.service.IHotelService;
+import com.uce.edu.service.ITransferenciaService;
 
 @SpringBootApplication
 public class ProyectoU3CqApplication implements CommandLineRunner{
@@ -20,6 +24,11 @@ public class ProyectoU3CqApplication implements CommandLineRunner{
 	@Autowired
 	private IHotelService hotelService;
 	
+	@Autowired
+	private ICuentaBancariaService cuentaBancariaService;
+	
+	@Autowired
+	private ITransferenciaService transferenciaService;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoU3CqApplication.class, args);
@@ -118,24 +127,49 @@ public class ProyectoU3CqApplication implements CommandLineRunner{
 	
 	
 		System.out.println("------------------  TALLER 30 ----------------------");
-		LOG.info("JOIN WHERE ");
-		this.hotelService.buscarHotelJoinWhere("Matrimonial").forEach(System.out::println);
+//		LOG.info("JOIN WHERE ");
+//		this.hotelService.buscarHotelJoinWhere("Matrimonial").forEach(System.out::println);
+//	
+//		LOG.info("INNER JOIN  EAGER/LAZY");
+//		this.hotelService.buscarHotelInnerJoin("Matrimonial").forEach(System.out::println);
+//		LOG.info("-->> Habitaciones");
+//		
+//		List<Hotel> ho = this.hotelService.buscarHotelInnerJoin("Matrimonial");
+//		
+//		for (Hotel item : ho) {
+//			LOG.info("Habitaciones: "+item.getHabitaciones());
+//		}
+		
+//		LOG.info("JOIN FETCH");
+//		List<Hotel> ho2 =this.hotelService.buscarHotelJoinFetch("Matrimonial");
+//		for (Hotel item : ho2) {
+//			LOG.info("Habitaciones: "+item.getHabitaciones());
+//		}
+		
+		System.out.println("----------------TALLER 31 -------------");
+//		LOG.info("JOIN FETCH");
+//		List<Hotel> ho2 =this.hotelService.buscarHotelJoinFetch("Matrimonial");
+//		for (Hotel item : ho2) {
+//			LOG.info("Habitaciones: "+item.getHabitaciones());
+//		}
 	
-		LOG.info("INNER JOIN  EAGER/LAZY");
-		this.hotelService.buscarHotelInnerJoin("Matrimonial").forEach(System.out::println);
-		LOG.info("-->> Habitaciones");
+		CuentaBancaria c1 = new CuentaBancaria();
+		c1.setNumero("A-111");
+		c1.setSaldo(new BigDecimal(850));
+		c1.setTipo("Ahorro");
 		
-		List<Hotel> ho = this.hotelService.buscarHotelInnerJoin("Matrimonial");
+		CuentaBancaria c2 = new CuentaBancaria();
+		c2.setNumero("A-211");
+		c2.setSaldo(new BigDecimal(450));
+		c2.setTipo("Ahorro");
 		
-		for (Hotel item : ho) {
-			LOG.info("Habitaciones: "+item.getHabitaciones());
-		}
+		//this.cuentaBancariaService.insertarCuentaBancaria(c1);
+		//this.cuentaBancariaService.insertarCuentaBancaria(c2);
 		
-		LOG.info("JOIN FETCH");
-		List<Hotel> ho2 =this.hotelService.buscarHotelJoinFetch("Matrimonial");
-		for (Hotel item : ho2) {
-			LOG.info("Habitaciones: "+item.getHabitaciones());
-		}
+		//this.transferenciaService.realizarTransferencia("A-111", "A-211", new BigDecimal(20));
+	
+		this.transferenciaService.realizarTransferenciaFachada("A-111", "A-211", new BigDecimal(20));
+	
 	}
 
 }

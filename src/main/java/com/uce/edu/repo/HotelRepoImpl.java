@@ -5,17 +5,22 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import javax.transaction.Transaction;
 import javax.transaction.Transactional;
+import javax.transaction.Transactional.TxType;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.support.TransactionSynchronizationManager;
 
+import com.uce.edu.ProyectoU3CqApplication;
 import com.uce.edu.repo.modelo.Hotel;
 
 
 @Repository
 @Transactional
 public class HotelRepoImpl implements IHotelRepo{
-
+	private static Logger LOG = Logger.getLogger(HotelRepoImpl.class);
 	@PersistenceContext
 	private EntityManager em;
 
@@ -80,8 +85,10 @@ public class HotelRepoImpl implements IHotelRepo{
 	}
 
 	@Override
+	//@Transactional(value=TxType.MANDATORY)
 	public List<Hotel> buscarHotelJoinFetch(String tipo) {
 		// TODO Auto-generated method stub
+		LOG.debug("Transaccion activa REPOSITORY: "+TransactionSynchronizationManager.isActualTransactionActive());
 		TypedQuery<Hotel> myQ = this.em.createQuery("SELECT h FROM Hotel h JOIN FETCH h.habitaciones ha WHERE ha.tipo = :tipo", Hotel.class);
 		myQ.setParameter("tipo", tipo);
 		return myQ.getResultList();
