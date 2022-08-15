@@ -168,7 +168,7 @@ public class ProyectoU3CqApplication implements CommandLineRunner{
 		
 		//this.transferenciaService.realizarTransferencia("A-111", "A-211", new BigDecimal(20));
 	
-		this.transferenciaService.realizarTransferenciaFachada("A-111", "A-211", new BigDecimal(20));
+	//	this.transferenciaService.realizarTransferenciaFachada("A-111", "A-211", new BigDecimal(20));
 	
 	}
 

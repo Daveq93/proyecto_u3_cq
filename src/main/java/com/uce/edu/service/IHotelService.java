@@ -6,7 +6,7 @@ import com.uce.edu.repo.modelo.Hotel;
 
 public interface IHotelService {
 
-	void insertarHotel(Hotel hotel);
+	boolean insertarHotel(Hotel hotel);
 
 	List<Hotel> buscarHotelInnerJoin(String tipo);
 	

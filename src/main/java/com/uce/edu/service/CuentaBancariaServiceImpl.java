@@ -1,5 +1,8 @@
 package com.uce.edu.service;
 
+import javax.transaction.Transactional;
+import javax.transaction.Transactional.TxType;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +16,7 @@ public class CuentaBancariaServiceImpl implements ICuentaBancariaService {
 	private ICuentaBancariaRepo cuentaBancariaRepo;
 	
 	@Override
+	@Transactional(value=TxType.REQUIRED)
 	public void insertarCuentaBancaria(CuentaBancaria cuentaBancaria) {
 		// TODO Auto-generated method stub
        this.cuentaBancariaRepo.insertar(cuentaBancaria);

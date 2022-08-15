@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -33,9 +34,17 @@ public class CuentaBancaria {
 	@Column(name = "cuba_saldo")
 	private BigDecimal saldo;
 	
-	@OneToMany(mappedBy = "cuentaOrigen",cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "cuentaOrigen",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	private List<Transferencia> transferenciasOrigen;
 	
 	@OneToMany(mappedBy = "cuentaDestino",cascade = CascadeType.ALL)
 	private List<Transferencia> transferenciasDestino;
+
+	@Override
+	public String toString() {
+		return "CuentaBancaria [id=" + id + ", numero=" + numero + ", tipo=" + tipo + ", saldo=" + saldo + "]";
+	}
+	
+	
+	
 }

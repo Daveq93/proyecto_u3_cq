@@ -9,6 +9,8 @@ public interface IHotelRepo {
 	
 	void insertar(Hotel hotel);
 	
+	Hotel buscarPorId(Integer id);
+	
 	List<Hotel> buscarHotelInnerJoin(String tipo);
 	
 	List<Hotel> buscarHotelInnerJoin();

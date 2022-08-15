@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 public interface ITransferenciaService {
 
 	
-	void realizarTransferencia(String numeroCuentaOrigen, String numeroCuentaDestino, BigDecimal monto);
+	boolean realizarTransferencia(String numeroCuentaOrigen, String numeroCuentaDestino, BigDecimal monto);
 
   void realizarTransferenciaFachada(String numeroCuentaOrigen, String numeroCuentaDestino, BigDecimal monto);
 }

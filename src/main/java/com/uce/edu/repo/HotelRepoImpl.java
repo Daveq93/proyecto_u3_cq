@@ -31,6 +31,13 @@ public class HotelRepoImpl implements IHotelRepo{
 	}
 
 	@Override
+	public Hotel buscarPorId(Integer id) {
+		// TODO Auto-generated method stub
+		return this.em.find(Hotel.class, id);
+	}
+	
+	
+	@Override
 	public List<Hotel> buscarHotelInnerJoin(String tipo) {
 		// TODO Auto-generated method stub
 		//puede ir JOIN   o INNER JOIN -> es igual
@@ -93,6 +100,8 @@ public class HotelRepoImpl implements IHotelRepo{
 		myQ.setParameter("tipo", tipo);
 		return myQ.getResultList();
 	}
+
+	
 
 	
 

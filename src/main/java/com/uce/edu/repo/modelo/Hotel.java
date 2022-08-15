@@ -32,7 +32,7 @@ public class Hotel {
 	private String direccion;
 	
 	// el fetch EAGER es mucho mas costosa, porque ejecuta un sql para cada habitacion
-	@OneToMany(mappedBy = "hotel",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "hotel",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	private List<Habitacion> habitaciones;
 
 	@Override

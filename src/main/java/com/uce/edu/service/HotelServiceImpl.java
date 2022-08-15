@@ -4,12 +4,16 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 import com.uce.edu.repo.HotelRepoImpl;
 import com.uce.edu.repo.IHotelRepo;
 import com.uce.edu.repo.modelo.Hotel;
+
+import net.bytebuddy.dynamic.loading.ClassLoadingStrategy.Configurable;
 
 
 
@@ -20,9 +24,17 @@ public class HotelServiceImpl implements IHotelService {
 	private IHotelRepo hotelRepo;
 	
 	@Override
-	public void insertarHotel(Hotel hotel) {
+	public boolean insertarHotel(Hotel hotel) {
 		// TODO Auto-generated method stub
-		this.hotelRepo.insertar(hotel);
+		boolean flag=false;
+		try {
+			this.hotelRepo.insertar(hotel);
+			flag=true;
+		}catch(Exception e){
+			LOG.info(e.getMessage());
+		}
+		
+		return flag;
 	}
 
 	@Override
