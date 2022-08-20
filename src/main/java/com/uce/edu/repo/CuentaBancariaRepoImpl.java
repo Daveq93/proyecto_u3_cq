@@ -24,6 +24,7 @@ public class CuentaBancariaRepoImpl implements ICuentaBancariaRepo{
 	public void insertar(CuentaBancaria cuentaBancaria) {
 		// TODO Auto-generated method stub
 		this.em.persist(cuentaBancaria);
+		throw new RuntimeException();
 	}
 
 	@Override

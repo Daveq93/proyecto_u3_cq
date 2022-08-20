@@ -17,9 +17,16 @@ public class CuentaBancariaServiceImpl implements ICuentaBancariaService {
 	
 	@Override
 	@Transactional(value=TxType.REQUIRED)
-	public void insertarCuentaBancaria(CuentaBancaria cuentaBancaria) {
+	public boolean insertarCuentaBancaria(CuentaBancaria cuentaBancaria) {
 		// TODO Auto-generated method stub
-       this.cuentaBancariaRepo.insertar(cuentaBancaria);
+		boolean flag = false;
+		try {
+			this.cuentaBancariaRepo.insertar(cuentaBancaria);
+			flag = true;
+		}catch(Exception e) {
+			
+		}
+       return flag;
 	}
 
 	@Override

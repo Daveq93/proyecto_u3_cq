@@ -5,7 +5,7 @@ import com.uce.edu.repo.modelo.CuentaBancaria;
 public interface ICuentaBancariaService {
 	
 	
-void insertarCuentaBancaria(CuentaBancaria cuentaBancaria);
+boolean insertarCuentaBancaria(CuentaBancaria cuentaBancaria);
 	
 	void actualizarCuentaBancaria(CuentaBancaria cuentaBancaria);
 	

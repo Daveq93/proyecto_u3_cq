@@ -29,10 +29,10 @@ public class TransferenciaServiceImpl implements ITransferenciaService {
 	
 	@Override
 	@Transactional(value=TxType.REQUIRED)
-	public boolean realizarTransferencia(String numeroCuentaOrigen, String numeroCuentaDestino, BigDecimal monto) {
+	public void realizarTransferencia(String numeroCuentaOrigen, String numeroCuentaDestino, BigDecimal monto) {
 		// TODO Auto-generated method stub
 		boolean flag = false;
-		try {
+		
 			
 			CuentaBancaria cuBaOrigen = this.cuentaBancariaService.buscarPorNumero(numeroCuentaOrigen);
 			CuentaBancaria cuBaDestino = this.cuentaBancariaService.buscarPorNumero(numeroCuentaDestino);
@@ -49,18 +49,20 @@ public class TransferenciaServiceImpl implements ITransferenciaService {
 			transferencia.setCuentaOrigen(cuBaOrigen);
 			transferencia.setCuentaDestino(cuBaDestino);
 			
+//			if(cuBaOrigen.getTipo().equals("Ahorro")) {
+//				throw new RuntimeException();
+//			}
+						
+			if(monto.compareTo(cuBaOrigen.getSaldo())>0) {
+				throw new RuntimeException();
+			}
+			
 			this.cuentaBancariaService.actualizarCuentaBancaria(cuBaDestino);
 			this.cuentaBancariaService.actualizarCuentaBancaria(cuBaOrigen);
 			
 			this.transferenciaRepo.insertar(transferencia);
-			flag=true;
-		}catch (TransactionalException ex){
-			LOG.info(ex.getMessage());
-		}
+			
 		
-		
-		
-		return flag;
 	}
 
 	@Override

@@ -21,6 +21,7 @@ public class TransferenciaRepoImpl implements ITransferenciaRepo {
 	public void insertar(Transferencia transferencia) {
 		// TODO Auto-generated method stub
        this.em.persist(transferencia);
+       //throw new RuntimeException();// Un RunTimeException puedo usarlo para reversar una transaccion 
 	}
 
 	@Override
