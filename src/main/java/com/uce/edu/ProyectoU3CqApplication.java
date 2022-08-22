@@ -10,11 +10,16 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.uce.edu.repo.modelo.Cliente;
 import com.uce.edu.repo.modelo.CuentaBancaria;
 import com.uce.edu.repo.modelo.Habitacion;
 import com.uce.edu.repo.modelo.Hotel;
+import com.uce.edu.repo.modelo.Producto;
+import com.uce.edu.service.IClienteService;
 import com.uce.edu.service.ICuentaBancariaService;
+import com.uce.edu.service.IGestorCompraProductosService;
 import com.uce.edu.service.IHotelService;
+import com.uce.edu.service.IProductoService;
 import com.uce.edu.service.ITransferenciaService;
 
 @SpringBootApplication
@@ -29,6 +34,16 @@ public class ProyectoU3CqApplication implements CommandLineRunner{
 	
 	@Autowired
 	private ITransferenciaService transferenciaService;
+	
+	@Autowired
+	private IGestorCompraProductosService gestorCompraService;
+	
+	@Autowired
+	private IClienteService clienteService;
+	
+	@Autowired
+	private IProductoService productoService;
+	
 	
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoU3CqApplication.class, args);
@@ -171,8 +186,92 @@ public class ProyectoU3CqApplication implements CommandLineRunner{
 		//this.transferenciaService.realizarTransferenciaFachada("A-111", "A-211", new BigDecimal(5));
 	
 		System.out.println("----------------------- TALLER 32 -------------- ");
-		this.transferenciaService.realizarTransferenciaFachada("A-111", "A-211", new BigDecimal(5));
+		//this.transferenciaService.realizarTransferenciaFachada("A-111", "A-211", new BigDecimal(5));
+		
+		
+		System.out.println("-----------------------TAREA 31-------------- ");
+		
+		Cliente clie1 = new Cliente();
+		clie1.setApellido("Morales");
+		clie1.setCedula("1712134578");
+		clie1.setDireccion("Quito");
+		clie1.setNombre("Karla");
+		
+		
+		Cliente clie2 = new Cliente();
+		clie2.setApellido("Zanches");
+		clie2.setCedula("1600102130");
+		clie2.setDireccion("Quito");
+		clie2.setNombre("Marco");
+		
+//		this.clienteService.insertarCliente(clie1);
+//		this.clienteService.insertarCliente(clie2);
+		
+		
+		Producto prod1 = new Producto();
+		prod1.setCodigoBarra("100000001");
+		prod1.setNombre("Avena");
+		prod1.setPrecio(new BigDecimal(0.60));
+		prod1.setStock(20);
+		
+		Producto prod2 = new Producto();
+		prod2.setCodigoBarra("100000002");
+		prod2.setNombre("Atun");
+		prod2.setPrecio(new BigDecimal(0.90));
+		prod2.setStock(30);
+		
+		
+		Producto prod3 = new Producto();
+		prod3.setCodigoBarra("100000003");
+		prod3.setNombre("Aceite");
+		prod3.setPrecio(new BigDecimal(6.00));
+		prod3.setStock(40);
+		
+		Producto prod4 = new Producto();
+		prod4.setCodigoBarra("100000004");
+		prod4.setNombre("Cafe");
+		prod4.setPrecio(new BigDecimal(3.00));
+		prod4.setStock(15);
+		
+//		this.productoService.insertarProducto(prod1);
+//		this.productoService.insertarProducto(prod2);
+//		this.productoService.insertarProducto(prod3);
+//		this.productoService.insertarProducto(prod4);
+		
+		
+		List<String>codigosBarra = new ArrayList<>();
+		
+		codigosBarra.add("100000001");
+		codigosBarra.add("100000002");
+		codigosBarra.add("100000003");
+		codigosBarra.add("100000004");
+		
+		this.gestorCompraService.generarFactura("000001271","1712134578" , codigosBarra);
 		
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -53,7 +53,7 @@ public class TransferenciaServiceImpl implements ITransferenciaService {
 //				throw new RuntimeException();
 //			}
 						
-			if(monto.compareTo(cuBaOrigen.getSaldo())>0) {
+			if(monto.compareTo(cuBaOrigen.getSaldo()) > 0) {
 				throw new RuntimeException();
 			}
 			
