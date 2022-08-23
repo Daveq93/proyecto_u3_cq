@@ -22,7 +22,7 @@ public class FacturaElectronicaRepoImpl implements IFacturaElectronicaRepo {
 	public void insertar(FacturaElectronica facturaElectronica) {
 			
 			this.em.persist(facturaElectronica);
-			throw new RuntimeException();
+			//throw new RuntimeException();
 
 	}
 

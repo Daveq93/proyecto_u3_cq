@@ -246,7 +246,11 @@ public class ProyectoU3CqApplication implements CommandLineRunner{
 		codigosBarra.add("100000003");
 		codigosBarra.add("100000004");
 		
-		this.gestorCompraService.generarFactura("000001271","1712134578" , codigosBarra);
+	//	this.gestorCompraService.generarFactura("000001271","1712134578" , codigosBarra);
+		
+		
+		System.out.println("----------------------- TALLER 33 -------------- ");
+		
 		
 	}
 
