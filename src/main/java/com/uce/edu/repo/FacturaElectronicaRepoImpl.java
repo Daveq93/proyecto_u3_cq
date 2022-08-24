@@ -18,11 +18,11 @@ public class FacturaElectronicaRepoImpl implements IFacturaElectronicaRepo {
 	private EntityManager em;
 
 	@Override
-	@Transactional(value = TxType.REQUIRED)
+	@Transactional(value = TxType.REQUIRES_NEW)
 	public void insertar(FacturaElectronica facturaElectronica) {
 			
 			this.em.persist(facturaElectronica);
-			//throw new RuntimeException();
+		//	throw new RuntimeException();
 
 	}
 
