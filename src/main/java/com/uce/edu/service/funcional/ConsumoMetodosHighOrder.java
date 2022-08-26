@@ -3,7 +3,6 @@ package com.uce.edu.service.funcional;
 public class ConsumoMetodosHighOrder {
 
 	public String consumirSupplier(IPersonaSupplier<String> funcion) {
-
 //		String valor =funcion.getNombre();
 //		Integer numero = Integer.valueOf(valor);
 //		return numero;
