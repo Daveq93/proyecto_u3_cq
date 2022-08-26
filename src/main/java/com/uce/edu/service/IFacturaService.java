@@ -1,5 +1,6 @@
 package com.uce.edu.service;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -9,7 +10,9 @@ public interface IFacturaService {
 
 	Factura consultarPorId(Integer id);
 
-	void insertarFactura(Factura factura);
+	BigDecimal gestionarFactura(String numeroFactura, String cedulaCliente, List<String> codigosBarra);
+	
+	void actualizarStock(String numeroFactura);
 
 	void actualizarFactura(Factura factura);
 

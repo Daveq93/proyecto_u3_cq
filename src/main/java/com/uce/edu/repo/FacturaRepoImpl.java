@@ -28,14 +28,14 @@ public class FacturaRepoImpl implements IFacturaRepo {
 	}
 	
 	@Override
-	@Transactional(value=TxType.REQUIRES_NEW)
+	@Transactional(value=TxType.MANDATORY)
 	public void insertar(Factura factura) {
 		// TODO Auto-generated method stub
 		this.em.merge(factura);
 	}
 
 	@Override
-	@Transactional(value=TxType.REQUIRES_NEW)
+	@Transactional(value=TxType.MANDATORY)
 	public void actualizar(Factura factura) {
 		// TODO Auto-generated method stub
 		this.em.merge(factura);
