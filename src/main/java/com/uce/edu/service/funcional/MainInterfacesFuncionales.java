@@ -1,5 +1,9 @@
 package com.uce.edu.service.funcional;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Stream;
+
 import org.apache.log4j.Logger;
 
 public class MainInterfacesFuncionales {
@@ -29,9 +33,11 @@ public class MainInterfacesFuncionales {
 			return cedula.concat(valorConsultado);
 		});
 		LOG.info(respSupplier2);
-		
-		   //JAVA
-		     
+
+		// JAVA
+		Stream<String> test = Stream.generate(() -> "David").limit(2);
+		LOG.info("JAVA SUPPLIER");
+		test.forEach(System.out::println);
 
 		// CONSUMER
 		// clases
@@ -44,38 +50,52 @@ public class MainInterfacesFuncionales {
 
 		// METODOS HIGHORDER
 		metodosHO.consumirConsumer(valor -> System.out.println(valor), 2);
+		// JAVA
+		List<Integer> listaNumeros = Arrays.asList(1, 2, 13, 4, 5, 16, 70, 18, 9);
+		LOG.info("JAVA CONSUMER");
+		listaNumeros.forEach(System.out::println);
 
-		// PREDICATE
-
+		// PREDICATe
 		IPersonaPredicate<String> predicateLambda = cadena -> cadena.contains("z");
 		LOG.info("Predica lamda: " + predicateLambda.evaluate("Quizhpe"));
 
-		    // METODOS HIGHORDER
+		// METODOS HIGHORDER
 
 		boolean respuestaPredicate = metodosHO.consumirPredicate(cadena -> cadena.contains("z"), "Quizhpe");
 		LOG.info("Predicate respuesta: " + respuestaPredicate);
 
+		// JAVA
+		LOG.info("PREDICATE JAVA");
+		listaNumeros.stream().filter(numero -> numero > 15).forEach(System.out::println);
+
+		listaNumeros.stream().sorted((x, y) -> x.compareTo(y)).forEach(System.out::println);
+		
+		
 		// FUNCTION
 
 		IPersonaFunction<Integer, String> functionLambda = cadena -> (Integer.valueOf(cadena) - 2);
 		LOG.info("Function lambda: " + functionLambda.aplicar("7"));
 
-		    // METODOS HIGHORDER
+		// METODOS HIGHORDER
 		String valorFinal = metodosHO.consumirFunction(valor -> {
 			String retorno = valor.toString() + " A";
 			return retorno;
 		}, 21);
 		LOG.info("Respuesta Function " + valorFinal);
-
+		
+		//JAVA
+		LOG.info("FUNCTION JAVA");
+		//RECOMENDACION TRABAJARR CON STREAM PORQUE ES MAS EFICIENTE
+		  listaNumeros.stream().map(numero -> "num: "+String.valueOf(numero)).toList().forEach(System.out::println);
+          
+		  
 		// UNARYOPERATOR
 
 		IPersonaUnaryOperator<String> unaryOperatorLambda = cadena -> cadena.concat("Unary");
 		LOG.info("Unary operator Lmabda: " + unaryOperatorLambda.apply("Prueba "));
 
-		
-		 // METODOS HIGHORDER
-		
-		
+		// METODOS HIGHORDER
+
 	}
 
 }
