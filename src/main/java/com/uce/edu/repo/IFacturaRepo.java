@@ -25,5 +25,5 @@ public interface IFacturaRepo {
 	
 	Factura buscarPorNumeroJinWhere(String numero);
 	
-	
+	List<Factura> buscarMayoresFecha(LocalDateTime fecha);
 }

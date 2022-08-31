@@ -22,4 +22,6 @@ public interface IFacturaService {
 	List<Factura> buscarMayoresFecha(LocalDateTime fecha, Integer cantidad);
 
 	Factura buscarPorNumeroJoinWhere(String numero);
+	
+	List<Factura> buscarMayoresFecha(LocalDateTime fecha);
 }

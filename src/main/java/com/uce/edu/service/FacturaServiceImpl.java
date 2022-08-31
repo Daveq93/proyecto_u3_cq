@@ -63,6 +63,12 @@ public class FacturaServiceImpl implements IFacturaService{
 		return this.faturaRepo.buscarPorNumeroJinWhere(numero);
 	}
 
+	@Override
+	public List<Factura> buscarMayoresFecha(LocalDateTime fecha) {
+		// TODO Auto-generated method stub
+		return this.faturaRepo.buscarMayoresFecha(fecha);
+	}
+
 	
 
 }
